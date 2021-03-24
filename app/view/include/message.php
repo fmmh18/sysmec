@@ -27,6 +27,13 @@
     toastr.error(<?php echo '"'.$message.'"'; ?>,<?php echo '"'.$message_title.'"'; ?>);
 
     });
+</script>  
+<?php }  else if($data['message'] == 'usuario-nao-logado'){ ?>
+ <script>
+    $(document).ready(function(){  
+    toastr.error(<?php echo '"'.$message.'"'; ?>,<?php echo '"'.$message_title.'"'; ?>);
+
+    });
 </script> 
 <?php } ?> 
 <?php } ?>

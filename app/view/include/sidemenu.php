@@ -16,21 +16,18 @@
           </div>
           <?php endif; ?>
           <a href="<?php echo getenv('APP_HOST'); ?>/"  class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-home"></i> Início</a>
-          <a href="<?php echo getenv('APP_HOST'); ?>/restaurante"  class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-utensils"></i> Restaurante</a>
           <?php if(empty($_SESSION['uID'])): ?>
             <a href="<?php echo getenv('APP_HOST'); ?>/login" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-sign-in-alt"></i> Login</a>
           <?php else: ?>
           <?php if($_SESSION['uLevel'] == 1): ?>
-              <a href="<?php echo getenv('APP_HOST'); ?>/admin/usuario/listar" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-user"></i> Usuários</a>
-              <a href="<?php echo getenv('APP_HOST'); ?>/admin/cardapio/listar" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-book"></i> Cardápio</a>   
-              <a href="<?php echo getenv('APP_HOST'); ?>/admin/categoria/listar" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-list"></i> Categoria</a>  
-              <a href="<?php echo getenv('APP_HOST'); ?>/admin/pedido/listar/0" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-file-invoice-dollar"></i> Pedido</a>  
-          <?php elseif($_SESSION['uLevel'] == 2): ?>
-              <a href="<?php echo getenv('APP_HOST'); ?>/admin/pedido/listar/<?php echo $_SESSION['uID']; ?>" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-file-invoice-dollar"></i> Pedido</a>  
-              <a href="<?php echo getenv('APP_HOST'); ?>/admin/cardapio/listar/<?php echo $_SESSION['uID']; ?>" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-book"></i> Cardápio</a>   
-              <a href="<?php echo getenv('APP_HOST'); ?>/admin/categoria/listar/<?php echo $_SESSION['uID']; ?>" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-list"></i> Categoria</a>  
+              <a href="<?php echo getenv('APP_HOST'); ?>/usuario" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-user"></i> Usuários</a>
+              <a href="<?php echo getenv('APP_HOST'); ?>/orcamento" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-book"></i> Orçamentos</a>   
+              <a href="<?php echo getenv('APP_HOST'); ?>/veiculo" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-list"></i> Veículos</a>  
+          <?php elseif($_SESSION['uLevel'] == 2): ?> 
+              <a href="<?php echo getenv('APP_HOST'); ?>/orcamento" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-book"></i> Orçamentos</a>   
+              <a href="<?php echo getenv('APP_HOST'); ?>/veiculo" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-list"></i> Veículos</a>  
           <?php elseif($_SESSION['uLevel'] == 3): ?>     
-              <a href="<?php echo getenv('APP_HOST'); ?>/pedido" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-file-invoice-dollar"></i> Pedido</a>  
+            <a href="<?php echo getenv('APP_HOST'); ?>/orcamento" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-book"></i> Orçamentos</a>   
           <?php endif; ?> 
           <?php endif; ?>
             <a href="<?php echo getenv('APP_HOST'); ?>/sair" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-sign-out-alt"></i> Sair</a>
