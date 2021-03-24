@@ -26,8 +26,9 @@ $router->post("/registrar","UserController:userRegister");
 $router->post("/login","UserController:userAuthenticate");  
 $router->get("/principal","IndexController:principalPage"); 
 $router->get("/sair","IndexController:userLogout"); 
+$router->get("/sair/{message}","IndexController:userLogout"); 
 //Usuario
-$router->get("/usuario","IndexController:loginPage"); 
+$router->get("/usuario","IndexController:userListPage"); 
 
 
 //Exception erro
