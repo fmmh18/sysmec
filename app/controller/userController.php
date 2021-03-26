@@ -74,12 +74,18 @@ class userController
 
     }
 
-    public function userLogout()
+    public function userLogout($request)
     {
         session_start();
         session_destroy();
-        unset($_SESSION);
-        header("location: ".getenv('APP_HOST')."/");
+        unset($_SESSION);  
+        if(!empty($request))
+        {
+            header("location: ".getenv('APP_HOST')."/".$request['message']);
+        }else{
+            header("location: ".getenv('APP_HOST'));
+        }
+        
         
     }
 
@@ -99,98 +105,14 @@ class userController
 
         }
     }
-    public function userCreate($request)
+
+    public function userEditLevel($request)
     {
-        session_start();
-
-        if(!empty($request['message']))
-        {
-            if($request['message'] == 'sucesso')
-            {
-                $status['message'] = 'sucesso' ;
-                $message = "Usuário criado.";
-            }
-            else if($request['message'] == 'erro')
-            {
-                $status['message'] = 'erro' ;
-                $message = "Opss! aconteceu algo que não previamos.";
-            }
-        }
- 
-        if($_SESSION['uLevel'] != 1)
-        {
-            header("location: ".getenv('APP_HOST')."/permissao");
-        }else{
-            $title = "XôMenu - Seu webcardárpio";
-            require __DIR__."/../view/admin/user/add.php";
-        }
-    }
-
-    public function userEdit($request)
-    {
-        session_start();
-        
-        $id = $request['id'];
-
-        if(!empty($request['message']))
-        {
-            if($request['message'] == 'sucesso')
-            {
-                $status['message'] = 'sucesso' ;
-                $message = "Usuário alterado.";
-            }
-            else if($request['message'] == 'erro')
-            {
-                $status['message'] = 'erro' ;
-                $message = "Opss! aconteceu algo que não previamos.";
-            }
-        }
-
-        $users = new userModel;
-
-        $user = $users->userDetail($id);
-
-        $title = "XôMenu - Seu webcardárpio";
-        require __DIR__."/../view/admin/user/edit.php"; 
-    }
-
-    public function userUpdate($request)
-    {
-        session_start();
- 
-        $id = $request['user_id'];
-        $users = new userModel;
-
-        if($request['user_level'] == 2){
-            $url = getenv('APP_UPLOADLOGO');
-        }else{
-            $url = getenv('APP_UPLOADIMAGE');
-        }
-
-
-        $image_old = $request['user_image_old'];
-        $image_new = $_FILES['user_image']['name'];
-
-        if($image_old != $image_new){ 
-
-            $images = $_FILES;  
-
-            if($images['user_image']['error'] == 0)
-            {
-                if(move_uploaded_file($images["user_image"]["tmp_name"], $url.$images["user_image"]["name"]))
-                {
-                    $request['user_image'] = $images["user_image"]["name"];
-                    return $users->userUpdate($request);
-                    
-                    header("location: ".getenv('APP_HOST')."/usuario/editar/".$id."/sucesso");
-                }
-            }
-        }else{
-            $request['user_image'] = $image_old;
-
-            return $users->userUpdate($request);
-            
-            header("location: ".getenv('APP_HOST')."/usuario/editar/".$id."/sucesso");
-        }
+        $status = $request['status'];
+        $id = $request['id']; 
+        $user =  userModel::where('id','=',$id)->update([
+            'status'=>$status,
+            'updated_at'=> date('Y-m-d H:i:s')]);
+            echo $user;
     }
 }

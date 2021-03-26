@@ -1,39 +1,23 @@
 <?php if(!empty($data['message'])){ ?>
  <?php if($data['message'] == 'sucesso'){ ?>
- <script>
-
-    $(document).ready(function(){  
-    toastr.success(<?php echo '"'.$message.'"'; ?>,<?php echo '"'.$message_title.'"'; ?>);
-
-    });
+ <script> 
+    toastr.success(<?php echo '"'.$message.'"'; ?>,<?php echo '"'.$message_title.'"'; ?>); 
 </script> 
-<?php }  else if($data['message'] == 'erro-login'){ ?>
- <script>
-    $(document).ready(function(){  
-    toastr.error(<?php echo '"'.$message.'"'; ?>,<?php echo '"'.$message_title.'"'; ?>);
-
-    });
+<?php }elseif($data['message'] == 'erro-login'){ ?>
+ <script> 
+    toastr.error(<?php echo '"'.$message.'"'; ?>,<?php echo '"'.$message_title.'"'; ?>); 
 </script> 
-<?php }  else if($data['message'] == 'arquivo-invalido'){ ?>
- <script>
-    $(document).ready(function(){  
-    toastr.error(<?php echo '"'.$message.'"'; ?>,<?php echo '"'.$message_title.'"'; ?>);
-
-    });
+<?php }elseif($data['message'] == 'arquivo-invalido'){ ?>
+ <script> 
+    toastr.error(<?php echo '"'.$message.'"'; ?>,<?php echo '"'.$message_title.'"'; ?>); 
 </script> 
-<?php }  else if($data['message'] == 'erro-cpf-cnpj'){ ?>
- <script>
-    $(document).ready(function(){  
-    toastr.error(<?php echo '"'.$message.'"'; ?>,<?php echo '"'.$message_title.'"'; ?>);
-
-    });
+<?php }elseif($data['message'] == 'erro-cpf-cnpj'){ ?>
+ <script> 
+    toastr.error(<?php echo '"'.$message.'"'; ?>,<?php echo '"'.$message_title.'"'; ?>); 
 </script>  
-<?php }  else if($data['message'] == 'usuario-nao-logado'){ ?>
- <script>
-    $(document).ready(function(){  
-    toastr.error(<?php echo '"'.$message.'"'; ?>,<?php echo '"'.$message_title.'"'; ?>);
-
-    });
+<?php }elseif($data['message'] == 'usuario-nao-logado'){ ?>
+ <script> 
+    toastr.error(<?php echo '"'.$message.'"'; ?>,<?php echo '"'.$message_title.'"'; ?>);  
 </script> 
 <?php } ?> 
 <?php } ?>

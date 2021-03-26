@@ -25,10 +25,14 @@ $router->get("/{message}","IndexController:loginPage");
 $router->post("/registrar","UserController:userRegister");  
 $router->post("/login","UserController:userAuthenticate");  
 $router->get("/principal","IndexController:principalPage"); 
-$router->get("/sair","IndexController:userLogout"); 
-$router->get("/sair/{message}","IndexController:userLogout"); 
+$router->get("/sair","UserController:userLogout"); 
+$router->get("/sair/{message}","UserController:userLogout"); 
 //Usuario
 $router->get("/usuario","IndexController:userListPage"); 
+$router->get("/usuario/adicionar","IndexController:userAddPage"); 
+$router->get("/usuario/editar/{id}","IndexController:userEditPage"); 
+$router->get("/usuario/deletar/{id}","UserController:userDelete"); 
+$router->post("/usuario/alterar-status","UserController:userEditLevel"); 
 
 
 //Exception erro

@@ -21,15 +21,17 @@
           <?php else: ?>
           <?php if($_SESSION['uLevel'] == 1): ?>
               <a href="<?php echo getenv('APP_HOST'); ?>/usuario" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-user"></i> Usuários</a>
-              <a href="<?php echo getenv('APP_HOST'); ?>/orcamento" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-book"></i> Orçamentos</a>   
-              <a href="<?php echo getenv('APP_HOST'); ?>/veiculo" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-list"></i> Veículos</a>  
+              <a href="<?php echo getenv('APP_HOST'); ?>/orcamento" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-file-alt"></i> Orçamentos</a>   
+              <a href="<?php echo getenv('APP_HOST'); ?>/veiculo" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-car"></i> Veículos</a>  
           <?php elseif($_SESSION['uLevel'] == 2): ?> 
-              <a href="<?php echo getenv('APP_HOST'); ?>/orcamento" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-book"></i> Orçamentos</a>   
-              <a href="<?php echo getenv('APP_HOST'); ?>/veiculo" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-list"></i> Veículos</a>  
+              <a href="<?php echo getenv('APP_HOST'); ?>/orcamento" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-file-alt"></i> Orçamentos</a>   
+              <a href="<?php echo getenv('APP_HOST'); ?>/veiculo" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-car"></i> Veículos</a>  
           <?php elseif($_SESSION['uLevel'] == 3): ?>     
-            <a href="<?php echo getenv('APP_HOST'); ?>/orcamento" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-book"></i> Orçamentos</a>   
+            <a href="<?php echo getenv('APP_HOST'); ?>/orcamento" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-file-alt"></i> Orçamentos</a>   
           <?php endif; ?> 
           <?php endif; ?>
+          <?php if(!empty($_SESSION)): ?>
             <a href="<?php echo getenv('APP_HOST'); ?>/sair" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-sign-out-alt"></i> Sair</a>
-      </div>
+          <?php endif; ?>
+           </div>
 </div>

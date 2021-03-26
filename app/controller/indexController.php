@@ -1,6 +1,7 @@
 <?php
     
     namespace App\Controller;
+    use App\Model\userModel;
  
 
 class indexController
@@ -20,6 +21,9 @@ class indexController
             }else if($data['message'] == 'usuario-nao-logado'){
                 $message_title = "Erro";
                 $message = "Usuário não logado."; 
+            }else if($data['message'] == 'erro-login'){
+                $message_title = "Erro";
+                $message = "Usuário não logado."; 
             }
         }   
         $title = "SysMec - Seu gerenciador de oficina";
@@ -29,8 +33,8 @@ class indexController
     public function principalPage()
     {
         session_start();
-        if(empty($_SESSION)){
-            header("location: ".getenv('APP_HOST')."sair/usuario-nao-logado");
+        if(empty($_SESSION)){ 
+            header("location: ".getenv('APP_HOST')."/sair/usuario-nao-logado");
         }
         $title = "SysMec - Seu gerenciador de oficina";
         require __DIR__."/../view/page.php";
@@ -39,11 +43,51 @@ class indexController
     public function userListPage($request)
     {
         session_start();
-        if(empty($_SESSION)){
-            header("location: ".getenv('APP_HOST')."sair/usuario-nao-logado");
+        if(empty($_SESSION)){ 
+            header("location: ".getenv('APP_HOST')."/sair/usuario-nao-logado");
         }
-        $title = "SysMec - Seu gerenciador de oficina";
-        require __DIR__."/../view/page.php";
+        
+        $users = new userModel;
+        $datas = $users::get();
+
+        $levels = ["Sem Perfil","Administrador","Mecanico","Usuário Comum"];
+        
+
+        $title = "SysMec - Seu gerenciador de oficina - Lista de Usuários";
+        require __DIR__."/../view/user/list.php";
+    }
+
+    public function userAddPage()
+    {
+        session_start();
+        if(empty($_SESSION)){ 
+            header("location: ".getenv('APP_HOST')."/sair/usuario-nao-logado");
+        }
+        
+        $levels = ["Sem Perfil","Administrador","Mecanico","Usuário Comum"];
+            
+        $subtitle = "Cadastrar";
+        $title = "SysMec - Seu gerenciador de oficina - Cadastrar Usuário";
+        require __DIR__."/../view/user/form.php";
+    }
+
+    public function userEditPage($request)
+    {
+        session_start();
+        if(empty($_SESSION)){ 
+            header("location: ".getenv('APP_HOST')."/sair/usuario-nao-logado");
+        }
+        
+        $levels = ["Sem Perfil","Administrador","Mecanico","Usuário Comum"];
+            
+        $users = new userModel;
+
+        $data = $users->userDetail($request['id']);
+         
+
+        $subtitle = "Editar";
+        $title = "SysMec - Seu gerenciador de oficina - Editar Usuário";
+        require __DIR__."/../view/user/form.php";
     }
 
 }

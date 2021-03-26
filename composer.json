@@ -27,7 +27,8 @@
         "illuminate/console": "^7.22",
         "dragonmantank/cron-expression": "^3.0",
         "illuminate/bus": "^7.22",
-        "illuminate/queue": "^7.22"
+        "illuminate/queue": "^7.22",
+        "coffeecode/paginator": "^1.0"
     },
     "autoload": {
         "psr-4": {
