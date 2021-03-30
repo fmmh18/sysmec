@@ -15,7 +15,7 @@
           <?php endif; ?>
           </div>
           <?php endif; ?>
-          <a href="<?php echo getenv('APP_HOST'); ?>/"  class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-home"></i> Início</a>
+          <a href="<?php echo getenv('APP_HOST'); ?>/principal"  class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-home"></i> Início</a>
           <?php if(empty($_SESSION['uID'])): ?>
             <a href="<?php echo getenv('APP_HOST'); ?>/login" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-sign-in-alt"></i> Login</a>
           <?php else: ?>

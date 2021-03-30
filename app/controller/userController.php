@@ -21,16 +21,16 @@ class userController
         $hash = crypt($password, '$2a$' . $custo . '$' . $salt . '$');
         $password = $hash;
 
-        if($users->userFindMail($mail) == 1 && $users->userFindStatus($mail))
+        if($users->userFindMail($mail) == 1 && $users->userFindStatus($mail) == 1)
         {
             if(!empty($user = $users->userValidate($mail,$password)))
             {
                 session_start();
 
-                $_SESSION['uID'] = $user['id'];
-                $_SESSION['uLevel'] = $user['level'];
-                $_SESSION['uName'] = $user['name'];
-                $_SESSION['uMail'] = $user['mail'];
+                $_SESSION['uID']        = $user['id'];
+                $_SESSION['uLevel']     = $user['level'];
+                $_SESSION['uName']      = $user['name'];
+                $_SESSION['uMail']      = $user['mail'];
                 $_SESSION['uIDSession'] = md5($user['id'])."-".date("Y-m-d H:i:s");
                 
                 header("location: ".getenv('APP_HOST')."/principal");
@@ -39,7 +39,8 @@ class userController
                 header("location: ".getenv('APP_HOST')."/usuario-nao-encontrado");
                 return false;
             }
-        }else{ header("location: ".getenv('APP_HOST')."/usuario-nao-encontrado");
+        }else{ 
+            header("location: ".getenv('APP_HOST')."/usuario-nao-encontrado");
             return false;
         }
     }
@@ -50,7 +51,7 @@ class userController
         $users   = new userModel;
 
         //verificar se ja possui cadastro
-        $result = $users->userValidate($request['cpfcnpj']);
+        $result = $users->userValidateCPFCNPJ($request['cpfcnpj']);
 
         if($result > 0){
             header("location: ".getenv('APP_HOST')."/erro-cpf-cnpj");
@@ -66,10 +67,15 @@ class userController
          
         if(!empty($users->userInsert($request)))
         {
+            if(!empty($request['hidden_action']))
+            header("location: ".getenv('APP_HOST').$request['hidden_action']."/sucesso");
+            else
             header("location: ".getenv('APP_HOST')."/sucesso");
-        }else
-        {
-            header("location: ".getenv('APP_HOST')."/erro");
+        }else{
+            if(!empty($request['hidden_action']))
+            header("location: ".getenv('APP_HOST').$request['hidden_action']."/erro");
+            else
+            header("location: ".getenv('APP_HOST').$request['hidden_action']."/erro");
         }
 
     }
@@ -106,13 +112,39 @@ class userController
         }
     }
 
-    public function userEditLevel($request)
+    public function userEditStatus($request)
     {
         $status = $request['status'];
-        $id = $request['id']; 
-        $user =  userModel::where('id','=',$id)->update([
-            'status'=>$status,
+        $id     = $request['id']; 
+        $user   =  userModel::where('id',$id)->update([
+            'status'    => $status,
             'updated_at'=> date('Y-m-d H:i:s')]);
-            echo $user;
+        echo $user;
+    }
+
+    public function userUpdate($request)
+    {
+        $users   = new userModel;
+ 
+        
+        //gerar senha aleatória
+        $password = $request['password'];
+        $custo = '08';
+        $salt = 'Cf1f11ePArKlBJomM0F6aJ';
+        $hash = crypt($password, '$2a$' . $custo . '$' . $salt . '$');
+        $request['password'] = $hash;
+         
+        if(!empty($users->userUpdate($request)))
+        {
+            if(!empty($request['hidden_action']))
+            header("location: ".getenv('APP_HOST').$request['hidden_action']."/".$request['id']."/sucesso");
+            else
+            header("location: ".getenv('APP_HOST')."/".$request['id']."/sucesso");
+        }else{
+            if(!empty($request['hidden_action']))
+            header("location: ".getenv('APP_HOST').$request['hidden_action']."/".$request['id']."/erro");
+            else
+            header("location: ".getenv('APP_HOST').$request['hidden_action']."/".$request['id']."/erro");
+        }
     }
 }

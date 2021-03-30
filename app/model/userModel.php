@@ -19,14 +19,18 @@ class userModel extends Model
 
     public function userFindMail($mail)
     {
-        return userModel::where('mail','=',$mail)->count();
+        return userModel::where('mail',$mail)->count();
     }
 
     public function userFindStatus($mail)
     {
         return userModel::where('status',1)->where('mail',$mail)->count();
     }
-
+    public function userValidateCPFCNPJ($cpfcnpj)
+    {
+        $user =  userModel::where('cpfcnpj',$cpfcnpj)->count();
+        return $user;
+    }
     public function userValidate($mail,$password)
     {
         $user =  userModel::where('mail',$mail)
@@ -74,23 +78,21 @@ class userModel extends Model
 
     public function userUpdate($data)
     {
-        $user = userModel::where('id','=',$data['user_id'])->update([
-            'name'=>$data['user_name'],
-            'mail'=>$data['user_mail'],
-            'password'=>$data['user_password'],
-            'phone'=>$data['user_phone'],
-            'cellphone'=>$data['user_cellphone'],
-            'zipcode'=>$data['user_zipcode'],
-            'address'=>$data['user_address'],
-            'number'=>$data['user_number'],
-            'neighborhood'=>$data['user_neighborhood'],
-            'complement'=>$data['user_complement'],
-            'city'=>$data['user_city'],
-            'state'=>$data['user_state'],
-            'level'=>$data['user_level'],
-            'status'=>$data['user_status'],
-            'image'=>$data['user_image']
+        $user = userModel::where('id',$data['id'])->update([
+            'name'          => $data['name'],
+            'mail'          => $data['mail'],
+            'password'      => $data['password'],
+            'phone'         => $data['phone'], 
+            'zipcode'       => $data['zipcode'],
+            'address'       => $data['address'],
+            'number'        => $data['number'],
+            'neighborhood'  => $data['neighborhood'],
+            'complement'    => $data['complement'],
+            'city'          => $data['city'],
+            'state'         => $data['state'],
+            'level'         => $data['level']
             ]);
+            return $user;
 
     }
 }

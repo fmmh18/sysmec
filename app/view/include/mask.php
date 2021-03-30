@@ -15,7 +15,8 @@
     }
 }
 
-$('#cpfcnpj').length > 11 ? $('#cpfcnpj').mask('00.000.000/0000-00', options) : $('#cpfcnpj').mask('000.000.000-00#', options);
+    $('#cpfcnpj').length > 11 ? $('#cpfcnpj').mask('00.000.000/0000-00', options) : $('#cpfcnpj').mask('000.000.000-00#', options);
     $("#zipcode").mask('00000-000');
+    $("#board").mask('AAA-0000'); 
     });
     </script>
