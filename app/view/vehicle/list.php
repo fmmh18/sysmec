@@ -18,8 +18,8 @@
                     <td><b>#</b></td>
                     <td><b>Marca</b></td>
                     <td><b>Modelo</b></td>
-                    <td><b>Placas</b></td> 
-                    <td><b>Placas</b></td> 
+                    <td><b>Placa</b></td>  
+                    <td><b>Ano</b></td>  
                     <td><b>Status</b></td> 
                     <td colspan="2" class="text-center"><b>Ações</b></td>
                 </tr>
@@ -30,6 +30,7 @@
                     <td><?php echo $data->brand; ?></td>
                     <td><?php echo $data->model; ?></td>
                     <td><?php echo $data->board; ?></td> 
+                    <td><?php echo $data->year; ?></td> 
                     <input type="hidden" id="vehicle_id_<?php echo $data->id; ?>" value="<?php echo $data->id; ?>"/>
                     <td class="text-center">
                     <input type="hidden" id="status_<?php echo $data->id; ?>" value="<?php echo $data->status; ?>"/>

@@ -10,7 +10,7 @@
         <h2>Lista de Orçamentos</h2>
         <hr>
         <div class="col-md-12 text-right">
-        <a href="usuario/adicionar" class="btn btn-primary" style="margin-bottom:8px"><i class="fas fa-plus-circle"></i> Cadastrar</a>
+        <a href="orcamento/adicionar" class="btn btn-primary" style="margin-bottom:8px"><i class="fas fa-plus-circle"></i> Cadastrar</a>
         </div>
         <table class="table table-striped table-bordered">
             <thead>
@@ -30,8 +30,6 @@
                     <td><?php echo $data->total; ?></td> 
                     <input type="hidden" id="budget_id_<?php echo $data->id; ?>" value="<?php echo $data->id; ?>"/>
                     <td class="text-center">
-                    <input type="hidden" id="user_name_<?php echo $data->id; ?>" value="<?php echo $data->name; ?>"/>
-                    
                     <input type="hidden" id="status_<?php echo $data->id; ?>" value="<?php echo $data->status; ?>"/>
                     <i class="fas fa-circle" id="button_status_<?php echo $data->id; ?>"></i></td>
                     <td class="text-center" colspan="2"><a href="orcamento/editar/<?php echo $data->id; ?>"><i class="fas fa-edit"></i></a>&nbsp; <i class="far fa-trash-alt" id="button_deletar_budget_<?php echo $data->id; ?>"></i></td>
@@ -55,7 +53,7 @@
                                 $("#status_"+budget_id).val(1);
                                 $("#button_status_"+budget_id).css("color","green")
                             } 
-                            $.post("<?php echo getenv('APP_HOST'); ?>/usuario/alterar-status",
+                            $.post("<?php echo getenv('APP_HOST'); ?>/orcamento/alterar-status",
                             {
                                 status: $("#status_"+budget_id).val() ,
                                 id: $("#budget_id_"+budget_id).val() 

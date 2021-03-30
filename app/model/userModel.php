@@ -6,6 +6,7 @@
 class userModel extends Model
 {    
     protected $table = "users";
+    protected  $fillable = ['name','mail','phone','cpfcnpj','passowrd','status'];
 
     public function __construct()
     {
@@ -14,7 +15,7 @@ class userModel extends Model
 
     public function userDuplicate($cpfcnpj)
     {
-        return userModel::where('cpf',$cpfcnpj)->count();
+        return userModel::where('cpfcnpj',$cpfcnpj)->count();
     }
 
     public function userFindMail($mail)

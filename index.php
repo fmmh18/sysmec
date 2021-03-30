@@ -2,7 +2,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use CoffeeCode\Router\Router;  
+use CoffeeCode\Router\Router;   
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load(); 
@@ -42,15 +42,18 @@ $router->get("/orcamento","IndexController:budgetListPage");
 $router->post("/orcamento/alterar-status","BudgetController:budgetEditStatus");
 $router->get("/orcamento/adicionar","IndexController:budgetAddPage"); 
 $router->get("/orcamento/adicionar/{message}","IndexController:budgetAddPage"); 
+$router->post("/orcamento/adicionar","BudgetController:budgetRegister"); 
 $router->get("/orcamento/editar/{id}","IndexController:budgetEditPage"); 
 $router->get("/orcamento/editar/{id}/{message}","IndexController:budgetEditPage"); 
 //Veiculo
 $router->get("/veiculo","IndexController:vehicleListPage"); 
 $router->post("/veiculo/alterar-status","VehicleController:vehicleEditStatus");
 $router->get("/veiculo/adicionar","IndexController:vehicleAddPage"); 
-$router->get("/veiculo/adicionar/{message}","IndexController:vehicleAddPage"); 
+$router->get("/veiculo/adicionar/{message}","IndexController:vehicleAddPage");
+$router->post("/veiculo/adicionar","VehicleController:vehicleRegister");  
 $router->get("/veiculo/editar/{id}","IndexController:vehicleEditPage"); 
 $router->get("/veiculo/editar/{id}/{message}","IndexController:vehicleEditPage"); 
+$router->get("/veiculo/buscar-placa/{board}","VehicleController:listVehicleUser"); 
 
 
 //Exception erro

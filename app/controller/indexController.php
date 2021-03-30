@@ -221,6 +221,7 @@ class indexController
     public function vehicleAddPage($data)
     {
         session_start();
+        
         if(!empty($data['message'])){
             if($data['message'] == 'sucesso'){
                 $message_title = "Sucesso";
@@ -228,7 +229,10 @@ class indexController
             }else if($data['message'] == 'erro'){
                 $message_title = "Erro";
                 $message = "Cadastro não efetuado."; 
-            } 
+            }else if($data['message'] == 'veiculo-cadastrado'){
+                $message_title = "Erro";
+                $message = "Veículo já cadastrado."; 
+            }  
         }   
 
         if(empty($_SESSION)){ 
@@ -246,6 +250,7 @@ class indexController
     public function vehicleEditPage($data)
     {
         session_start();
+
         if(!empty($data['message'])){
             if($data['message'] == 'sucesso'){
                 $message_title = "Sucesso";
@@ -253,7 +258,10 @@ class indexController
             }else if($data['message'] == 'erro'){
                 $message_title = "Erro";
                 $message = "Cadastro não efetuado."; 
-            } 
+            }else if($data['message'] == 'veiculo-cadastrado'){
+                $message_title = "Erro";
+                $message = "Veículo já cadastrado."; 
+            }  
         }   
         if(empty($_SESSION)){ 
             header("location: ".getenv('APP_HOST')."/sair/usuario-nao-logado");

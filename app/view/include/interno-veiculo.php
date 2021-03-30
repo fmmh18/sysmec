@@ -8,6 +8,9 @@
                 $("#brand").val("");
                 $("#board").val(""); 
                 $("#year").val(""); 
+                $("#name").val(""); 
+                $("#phone").val(""); 
+                $("#mail").val("");  
             }
             
             //Quando o campo cep perde o foco.
@@ -24,15 +27,21 @@
                         $("#model").val("..."); 
                         $("#brand").val("..."); 
                         $("#year").val("..."); 
+                        $("#name").val("..."); 
+                        $("#mail").val("..."); 
+                        $("#phone").val("...");  
 
                         //Consulta o webservice viacep.com.br/
-                        $.getJSON("https://apicarros.com/v1/consulta/"+ placa +"/json", function(dados) {
-
+                        $.getJSON("<?php echo getenv('APP_HOST'); ?>/veiculo/buscar-placa/"+ placa +"", function(dados) {
+                            console.log(dados);
                             if (!("erro" in dados)) {
                                 //Atualiza os campos com os valores da consulta.
-                                $("#model").val(dados.modelo); 
-                                $("#brand").val(dados.marca);
-                                $("#year").val(dados.ano); 
+                                $("#model").val(dados.model); 
+                                $("#brand").val(dados.brand);
+                                $("#year").val(dados.year); 
+                                $("#name").val(dados.name); 
+                                $("#phone").val(dados.phone); 
+                                $("#mail").val(dados.mail);  
                             } //end if.
                             else {
                                 //CEP pesquisado não foi encontrado.

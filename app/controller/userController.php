@@ -54,8 +54,11 @@ class userController
         $result = $users->userValidateCPFCNPJ($request['cpfcnpj']);
 
         if($result > 0){
-            header("location: ".getenv('APP_HOST')."/erro-cpf-cnpj");
-            return false;
+            if(!empty($request['hidden_action']))
+            header("location: ".getenv('APP_HOST').$request['hidden_action']."/sucesso");
+            else
+            header("location: ".getenv('APP_HOST')."/sucesso");
+           return false;
         }
         
         //gerar senha aleatória
