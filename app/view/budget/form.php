@@ -40,15 +40,16 @@
             <div class="col-md-12 p-3"><h4>Peças</h4><hr></div>
             </div>
             <div class="row p-4">
-            <div class="col-md-12 text-right p-2"><a href="javascipt:void(0)" id="adicionar_peca" name="adicionar_peca" class="btn btn-info"><i class="fas fa-plus-circle"></i> adicionar peça</a> </div>
+            <div class="col-md-12 text-right p-2"><a href="javascipt:void(0)" id="add_part" name="add_part" class="btn btn-info"><i class="fas fa-plus-circle"></i> adicionar peça</a> </div>
             <div class="col-md-3 p-2 border" style="background-color:#eee"><b>Nome</b></div>
-            <div class="col-md-3 p-2 border" style="background-color:#eee"><b>Quantidade</b></div>
+            <div class="col-md-2 p-2 border" style="background-color:#eee"><b>Quantidade</b></div>
             <div class="col-md-3 p-2 border" style="background-color:#eee"><b>Valor Unitário</b></div>
             <div class="col-md-3 p-2 border" style="background-color:#eee"><b>Vlr. tot Peça</b></div>
-            <div class="col-md-3 p-2 border"><input type="text" name="name_part[]" class="form-control"></div>
-            <div class="col-md-3 p-2 border"><input type="text" name="qtd_part[]" class="form-control" ></div>
-            <div class="col-md-3 p-2 border"><input type="text" name="value_unitary[]" id="money2" class="form-control"></div>
-            <div class="col-md-3 p-2 border"><input type="text" name="value_tot_part[]" id="money2" class="form-control"></div>
+            <div class="col-md-3 p-2 border"><input type="text" name="name_part[]" placeholder="nome" class="form-control"></div>
+            <div class="col-md-2 p-2 border"><input type="text" name="qtd_part[]" placeholder="quantidade" id="qtd_part0" class="form-control" ></div>
+            <div class="col-md-3 p-2 border"><input type="text" name="value_unitary[]" placeholder="vlr. unitário" id="value_unitary0" class="form-control money2"></div>
+            <div class="col-md-3 p-2 border"><input type="text" name="value_tot_part[]" placeholder="vlr. total" readonly id="value_tot_part0" class="form-control money2"></div>
+            <div id="part" style="width:97.2%;margin-left:1.4%"></div>
             </div>
             <div class="col-md-12 p-3"><button type="submit" class="btn btn-lg btn-block btn-danger"><b><?php echo $button_action; ?></b></button></div>
             </form>
@@ -59,3 +60,4 @@
 <?php include __DIR__."/../include/interno-veiculo.php"; ?>
 <?php include __DIR__."/../include/mask.php"; ?> 
 <?php include __DIR__."/../include/message.php"; ?> 
+<?php include __DIR__."/../include/campos.php"; ?> 

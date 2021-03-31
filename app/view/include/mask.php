@@ -19,6 +19,8 @@
     $("#zipcode").mask('00000-000');
     $("#board").mask('AAA-0000'); 
     
-  $('#money2').mask("#.##0,00", {reverse: true});
+ 
+  
+    $('.money2').mask("###0.00", {reverse: true});
     });
     </script>
