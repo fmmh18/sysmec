@@ -9,7 +9,7 @@
     <div class="col-md-12">
         <h2>Lista de Veículos</h2>
         <hr>
-        <div class="col-md-12 text-right">
+        <div class="col-md-12 text-right <?php if($_SESSION["uLevel"] == 3){ echo 'd-none'; } ?>">
         <a href="veiculo/adicionar" class="btn btn-primary" style="margin-bottom:8px"><i class="fas fa-plus-circle"></i> Cadastrar</a>
         </div>
         <table class="table table-striped table-bordered">
@@ -34,8 +34,8 @@
                     <input type="hidden" id="vehicle_id_<?php echo $data->id; ?>" value="<?php echo $data->id; ?>"/>
                     <td class="text-center">
                     <input type="hidden" id="status_<?php echo $data->id; ?>" value="<?php echo $data->status; ?>"/>
-                    <i class="fas fa-circle" id="button_status_<?php echo $data->id; ?>"></i></td>
-                    <td class="text-center" colspan="2"><a href="veiculo/editar/<?php echo $data->id; ?>"><i class="fas fa-edit"></i></a>&nbsp; <i class="far fa-trash-alt" id="button_deletar_vehicle_<?php echo $data->id; ?>"></i></td>
+                    <i class="fas fa-circle" <?php if($_SESSION["uLevel"] == 1){ echo 'id="button_status_'.$data->id.'"';} ?> ></i></td>
+                    <td class="text-center" colspan="2"><a href="veiculo/editar/<?php echo $data->id; ?>" <?php if($_SESSION["uLevel"] == 3){ echo "style='display:none'"; } ?>><i class="fas fa-edit"></i></a>&nbsp; <i class="far fa-trash-alt" id="button_deletar_vehicle_<?php echo $data->id; ?>" <?php if($_SESSION["uLevel"] == 3 || $_SESSION["uLevel"] == 2){ echo "style='display:none'"; } ?>></i></td>
                 </tr>
                 </tbody>
                 <script>

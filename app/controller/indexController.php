@@ -4,6 +4,7 @@
     use App\Model\userModel;
     use App\Model\budgetModel;
     use App\Model\vehicleModel;
+    use App\Model\vehicleUserModel;
  
 
 class indexController
@@ -131,11 +132,11 @@ class indexController
 
         if($_SESSION['uLevel'] == 2)
         {
-            $datas = $budgets::where('id_oficina',$_SESSION['uID'])->all();
+            $datas = $budgets::where('id_workshop',$_SESSION['uID'])->get();
         }
         else if($_SESSION['uLevel'] == 3)
         {
-            $datas = $budgets::where('id_usuario',$_SESSION['uID'])->all();
+            $datas = $budgets::where('id_user',$_SESSION['uID'])->get();
         }
         else
         {

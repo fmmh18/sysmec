@@ -28,7 +28,7 @@
               <a href="<?php echo getenv('APP_HOST'); ?>/veiculo" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-car"></i> Veículos</a>  
           <?php elseif($_SESSION['uLevel'] == 3): ?>     
             <a href="<?php echo getenv('APP_HOST'); ?>/orcamento" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-file-alt"></i> Orçamentos</a>   
-            <a href="<?php echo getenv('APP_HOST'); ?>/veiculo" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-car"></i>Meus Veículos</a>  
+            <a href="<?php echo getenv('APP_HOST'); ?>/veiculo" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-car"></i> Meus Veículos</a>  
         <?php endif; ?> 
           <?php endif; ?>
           <?php if(!empty($_SESSION)): ?>
