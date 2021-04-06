@@ -12,6 +12,9 @@
         <form action="<?php echo getenv('APP_HOST').$hidden_action; ?>" method="post">
         <input type="hidden" name="hidden_action" value="<?php echo $hidden_action; ?>">
         <input type="hidden" name="id" value="<?php echo $row->id; ?>">
+        <input type="hidden" name="id_vehicle" id="id_vehicle">
+        <input type="hidden" name="id_user" id="id_user">
+        
             <div class="row">
             <div class="col-md-2 ml-3"><b>Placa</b></div>
             <div class="col-md-4"><b>Marca</b></div>
@@ -39,29 +42,35 @@
             <div class="row">
             <div class="col-md-12 p-3"><h4>Peças</h4><hr></div>
             </div>
-            <div class="row">
-            <div class="col-md-11 text-right p-2"><a href="javascipt:void(0)" id="add_part" name="add_part" class="btn btn-info"><i class="fas fa-plus-circle"></i> adicionar peça</a> </div>
+            <div class="row ml-2">
+            <div class="col-md-11">
+            <table class="table"> 
+              <tbody>
+                <tr>
+                  <td class="border-0 w-50"><input type="text" id="name_part0" placeholder="nome" class="form-control"></td>
+                  <td class="border-0"><input type="text" placeholder="quantidade" id="qtd_part0" class="form-control" ></td>
+                  <td class="border-0"><input type="text" placeholder="vlr. unitário" id="value_unitary0" class="form-control money2"></td>
+                  <td class="border-0"><input type="text" placeholder="vlr. total" readonly id="value_tot_part0" class="form-control money2"></td>
+                  <td class="border-0"><a href="javascipt:void(0)" id="add_part" name="add_part" class="btn btn-info"><i class="fas fa-plus-circle"></i></a></td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
             </div>
             <div class="row ml-3">
             <div class="col-md-11">
             <table class="table table-striped table-bordered" id="piece">
               <thead>
                 <tr>
-                  <th><b>Nome</b></th>
+                  <th class="w-50"><b>Nome</b></th>
                   <th><b>Quantidade</b></th>
                   <th><b>Vlr. Unitário</b></th>
                   <th><b>Vlr. total</b></th>
-                  <th><b>&nbsp;</b></th>
+                  <th><b>Excluir</b></th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td><input type="text" name="name_part[]" placeholder="nome" class="form-control"></td>
-                  <td><input type="text" name="qtd_part[]" placeholder="quantidade" id="qtd_part0" class="form-control" ></td>
-                  <td><input type="text" name="value_unitary[]" placeholder="vlr. unitário" id="value_unitary0" class="form-control money2"></td>
-                  <td><input type="text" name="value_tot_part[]" placeholder="vlr. total" readonly id="value_tot_part0" class="form-control money2"></td>
-                </tr>
-              </tbody>
+             </tbody>
             </table>
             </div>
              </div>

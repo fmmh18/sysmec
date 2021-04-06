@@ -15,4 +15,11 @@ class budgetController
         ]);
         echo $budget;
     }
+
+    public function budgetRegister($request)
+    {
+        print_r($request);
+      //  print_r($request['product']);
+       // echo '<br/>'.count($request['product']);
+    }
 }

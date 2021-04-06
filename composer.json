@@ -29,7 +29,8 @@
         "illuminate/bus": "^7.22",
         "illuminate/queue": "^7.22",
         "coffeecode/paginator": "^1.0",
-        "thiagoalessio/tesseract_ocr": "^2.11"
+        "thiagoalessio/tesseract_ocr": "^2.11",
+        "phpstan/phpstan": "^0.12.83"
     },
     "autoload": {
         "psr-4": {

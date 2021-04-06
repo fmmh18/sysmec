@@ -2,7 +2,7 @@
 
         $(document).ready(function() {
 
-            function limpa_formulário_placa() {
+            function limpa_formulario_placa() {
                 // Limpa valores do formulário de cep.
                 $("#model").val("");
                 $("#brand").val("");
@@ -11,15 +11,18 @@
                 $("#name").val(""); 
                 $("#phone").val(""); 
                 $("#mail").val("");  
+                $("#id_vehicle").val("");
+                $("#id_user").val("");   
+                
             }
             
             //Quando o campo cep perde o foco.
             $("#board").blur(function() {
 
-                //Nova variável "cep" somente com dígitos.
+                //Nova variável "Placa" somente com dígitos.
                 var placa = $(this).val().replace("-", "").toUpperCase();
                
-                //Verifica se campo cep possui valor informado.
+                //Verifica se campo Placa possui valor informado.
                 if (placa != "") {
  
 
@@ -29,11 +32,12 @@
                         $("#year").val("..."); 
                         $("#name").val("..."); 
                         $("#mail").val("..."); 
-                        $("#phone").val("...");  
-
-                        //Consulta o webservice viacep.com.br/
-                        $.getJSON("<?php echo getenv('APP_HOST'); ?>/veiculo/buscar-placa/"+ placa +"", function(dados) {
-                            console.log(dados);
+                        $("#phone").val("..."); 
+                        $("#id_vehicle").val("...");  
+                        $("#id_user").val("...");   
+ 
+                        $.getJSON("<?php echo getenv('APP_HOST'); ?>/veiculo/buscar-placa/"+ placa , function(dados) {
+                                console.log(dados);
                             if (!("erro" in dados)) {
                                 //Atualiza os campos com os valores da consulta.
                                 $("#model").val(dados.model); 
@@ -42,18 +46,19 @@
                                 $("#name").val(dados.name); 
                                 $("#phone").val(dados.phone); 
                                 $("#mail").val(dados.mail);  
-                            } //end if.
-                            else {
-                                //CEP pesquisado não foi encontrado.
-                                limpa_formulário_placa();
-                                alert("Placa não encontrada.");
+                                $("#id_vehicle").val(dados.id_vehicle);  
+                                $("#id_user").val(dados.id_user);  
+                            } else {
+                                //Placa pesquisado não foi encontrado.
+                                limpa_formulario_placa();
+                                toastr.error("Placa não encontrada.","Erro");
                             }
                         }); 
                      
-                } //end if.
-                else {
-                    //cep sem valor, limpa formulário.
-                    limpa_formulário_placa();
+                } else {
+                    //Placa sem valor, limpa formulário.
+                    limpa_formulario_placa();
+                    toastr.error("Placa não inválida.","Erro");
                 }
             });
         });

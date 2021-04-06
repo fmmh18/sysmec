@@ -209,8 +209,23 @@ class indexController
         }
         
         $vehicles = new vehicleModel;
- 
-        $datas = $vehicles::all();
+
+        if($_SESSION['uLevel'] == 1)
+        {
+            $datas = $vehicles::all();
+
+        }elseif($_SESSION['uLevel'] == 2)
+        {    
+            $datas = $vehicles::all();
+
+        }elseif($_SESSION['uLevel'] == 3)
+        {
+            $datas = vehicleuserModel::join('vehicles','vehicles_users.id_vehicle','=','vehicles.id')
+            ->join('users','vehicles_users.id_user','=','users.id')
+            ->select('users.id as id_user','users.name as name', 'users.mail as mail','users.phone as phone','users.cpfcnpj as cpfcnpj','vehicles.id as id_vehicle','vehicles.board as board','vehicles.brand as brand', 'vehicles.model as model','vehicles.year as year')
+            ->where('users.id',$_SESSION['uID'])
+            ->get();
+        }
    
 
         

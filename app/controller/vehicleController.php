@@ -63,7 +63,15 @@ class vehicleController
     {
         $vehicles = new vehicleuserModel;
         $data = $vehicles->listUserVehicle($request);
-        $result = json_encode($data[0]);
+        //echo $data;exit;
+         if($data)
+        {
+            $result = json_encode($data[0]);
+        }else{
+            $result = '{"erro" : true}';
+        }
+       // echo json_encode($erro);
+       // $result = json_encode($data[0]);
         echo $result;
     }
 }

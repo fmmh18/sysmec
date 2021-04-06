@@ -7,7 +7,7 @@
              <div class="col-md-8"><div class="mt-1"><?php echo $_SESSION['uName']; ?></div></div>
             <div class="col-md-1" style="margin-left:-8px;margin-top:10px"><a href="usuario/editar/<?php echo $_SESSION['uID']; ?>" class="badge badge-info"><i class="fas fa-user-edit"></i> Editar</a></div>
           </div>
-          <?php else: ?>
+          <?php else: ?> 
             <div class="row mb-2">
             <div class="col-md-4"><img src="/<?php echo getenv('APP_UPLOADLOGO').$_SESSION['uFoto'];?>" class="img-fluid rounded-circle p-2"></div>
             <div class="col-md-7"><div class="mt-1"><?php echo $_SESSION['uName']; ?><a href="usuario/editar/<?php echo $_SESSION['uID']; ?>" class="badge badge-info"><i class="fas fa-user-edit"></i> Editar</a></div></div>
@@ -28,7 +28,8 @@
               <a href="<?php echo getenv('APP_HOST'); ?>/veiculo" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-car"></i> Veículos</a>  
           <?php elseif($_SESSION['uLevel'] == 3): ?>     
             <a href="<?php echo getenv('APP_HOST'); ?>/orcamento" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-file-alt"></i> Orçamentos</a>   
-          <?php endif; ?> 
+            <a href="<?php echo getenv('APP_HOST'); ?>/veiculo" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-car"></i>Meus Veículos</a>  
+        <?php endif; ?> 
           <?php endif; ?>
           <?php if(!empty($_SESSION)): ?>
             <a href="<?php echo getenv('APP_HOST'); ?>/sair" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-sign-out-alt"></i> Sair</a>
