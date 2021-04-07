@@ -46,6 +46,7 @@ $router->get("/orcamento/editar/{id}","IndexController:budgetEditPage");
 $router->get("/orcamento/editar/{id}/{message}","IndexController:budgetEditPage"); 
 $router->post("/orcamento/editar","UserController:budgetUpdate"); 
 $router->post("/orcamento/alterar-status","BudgetController:budgetEditStatus");
+$router->post("/orcamento/deletar-pecas","BudgetController:budgetPartEditStatus");
 //Veiculo
 $router->get("/veiculo","IndexController:vehicleListPage"); 
 $router->get("/veiculo/adicionar","IndexController:vehicleAddPage"); 

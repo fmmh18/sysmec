@@ -22,8 +22,8 @@ class budgetModel extends Model
     {
         $budget = new budgetModel;
         $budget->id_vehicle    = $data['id_vehicle'];
-        //$budget->id_workshop   = $data['id_workshop'];
-        $budget->id_workshop   = 1;
+        $budget->id_workshop   = $data['id_workshop'];
+        //$budget->id_workshop   = 1;
         $budget->id_user       = $data['id_user'];
         $budget->date_entry    = date('Y-m-d H:i:s');
         $budget->total         = $data['value_total_services']; 

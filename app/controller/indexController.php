@@ -3,6 +3,7 @@
     namespace App\Controller;
     use App\Model\userModel;
     use App\Model\budgetModel;
+    use App\Model\budgetPartModel;
     use App\Model\vehicleModel;
     use App\Model\vehicleUserModel;
  
@@ -135,6 +136,7 @@ class indexController
         }
         
         $budgets = new budgetModel;
+        $vehicles = vehicleModel::all();
 
         if($_SESSION['uLevel'] == 2)
         {
@@ -148,7 +150,7 @@ class indexController
         {
             $datas = $budgets::all();
         }
-
+ 
         
         $title = "SysMec - Seu gerenciador de oficina - Lista de Orçamentos";
         require __DIR__."/../view/budget/list.php";
@@ -201,9 +203,15 @@ class indexController
         }
          
             
-        $budgets = new budgetModel;
+        $budgets    = new budgetModel;
+        $vehicles   = vehicleModel::all();
+        $users      = userModel::all();
+        $parts      = budgetPartModel::where('id_budget',$data['id'])->where('status',1)->get();
 
-        $row = $budget->budgetDetail($data['id']);
+      //  print_r($parts);exit;
+        $row = $budgets->budgetDetail($data['id']);
+
+         
          
         $hidden_action = substr($_GET['route'],0,15);
         $subtitle = "Editar";

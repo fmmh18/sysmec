@@ -25,14 +25,14 @@
                 <tbody>
                 <tr>
                     <td><?php echo $data->id; ?></td>
-                    <td><?php echo date('d/m/Y H:i:s',strtotime($data->data_entrada)); ?></td>
-                    <td><?php echo $data->id_veiculo; ?></td>
+                    <td><?php echo date('d/m/Y H:i:s',strtotime($data->date_entry)); ?></td>
+                    <td><?php echo $vehicles[$data->id_vehicle]->brand.' - '.$vehicles[$data->id_vehicle]->model; ?></td>
                     <td><?php echo $data->total; ?></td> 
                     <input type="hidden" id="budget_id_<?php echo $data->id; ?>" value="<?php echo $data->id; ?>"/>
                     <td class="text-center">
                     <input type="hidden" id="status_<?php echo $data->id; ?>" value="<?php echo $data->status; ?>"/>
                     <i class="fas fa-circle" <?php if($_SESSION["uLevel"] == 1){ echo 'id="button_status_'.$data->id.'"';} ?>  ></i></td>
-                    <td class="text-center" colspan="2"><a href="orcamento/editar/<?php echo $data->id; ?>"  <?php if($_SESSION["uLevel"] == 3){ echo "style='display:none'"; } ?> ><i class="fas fa-edit"></i></a>&nbsp; <i class="far fa-trash-alt" id="button_deletar_budget_<?php echo $data->id; ?>"  <?php if($_SESSION["uLevel"] == 3 || $_SESSION["uLevel"] == 2){ echo "style='display:none'"; } ?>></i></td>
+                    <td class="text-center" colspan="2"><a href="orcamento/editar/<?php echo $data->id; ?>"  <?php if($_SESSION["uLevel"] == 3){ echo "style='display:none'"; } ?> class="btn btn-info" ><i class="fas fa-edit"></i></a>&nbsp; <a href="#" id="button_deletar_budget_<?php echo $data->id; ?>" class="btn btn-danger" <?php if($_SESSION["uLevel"] == 3 || $_SESSION["uLevel"] == 2){ echo "style='display:none'"; } ?> ><i class="far fa-trash-alt"></i></a></td>
                 </tr>
                 </tbody>
                 <script>

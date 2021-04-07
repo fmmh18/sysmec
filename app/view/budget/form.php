@@ -23,22 +23,22 @@
             <div class="col-md-1"><b>Ano</b></div>
             </div>
             <div class="row">
-            <div class="col-md-2 ml-3"><input type="text" class="form-control" name="board" id="board" style="text-transform: uppercase;" <?php if(!empty($row->board)){ echo "value='".$row->board."'"; } ?> ></div>
-            <div class="col-md-4"><input type="text" class="form-control" name="model" id="model" readonly <?php if(!empty($row->model)){ echo "value='".$row->model."'"; } ?> ></div>
-            <div class="col-md-4"><input type="text" class="form-control" name="brand" id="brand" readonly <?php if(!empty($row->brand)){ echo "value='".$row->brand."'"; } ?> ></div>
-            <div class="col-md-1"><input type="text" class="form-control" name="year" id="year"  readonly <?php if(!empty($row->year)){ echo "value='".$row->year."'"; } ?> ></div>
+            <div class="col-md-2 ml-3"><input type="text" class="form-control" name="board" id="board" style="text-transform: uppercase;" <?php if(!empty($row->id_vehicle)){ echo "value='".$vehicles[$row->id_vehicle]->board."'"; } ?> ></div>
+            <div class="col-md-4"><input type="text" class="form-control" name="model" id="model" readonly <?php if(!empty($row->id_vehicle)){ echo "value='".$vehicles[$row->id_vehicle]->model."'"; } ?> ></div>
+            <div class="col-md-4"><input type="text" class="form-control" name="brand" id="brand" readonly <?php if(!empty($row->id_vehicle)){ echo "value='".$vehicles[$row->id_vehicle]->brand."'"; } ?> ></div>
+            <div class="col-md-1"><input type="text" class="form-control" name="year" id="year"  readonly <?php if(!empty($row->id_vehicle)){ echo "value='".$vehicles[$row->id_vehicle]->year."'"; } ?> ></div>
             </div>
             <div class="row">
             <div class="col-md-11 ml-3"><b>Proprietario</b></div>
-            <div class="col-md-11 ml-3"><input type="text" class="form-control" name="name" id="name" readonly <?php if(!empty($row->name)){ echo "value='".$row->name."'"; } ?> ></div>
+            <div class="col-md-11 ml-3"><input type="text" class="form-control" name="name" id="name" readonly <?php if(!empty($row->id_user)){ echo "value='".$users[$row->id_user]->name."'"; } ?> ></div>
             </div>
             <div class="row">
             <div class="col-md-6 ml-3"><b>E-mail</b></div>
             <div class="col-md-5"><b>Telefone</b></div>
             </div> 
             <div class="row">
-            <div class="col-md-6 ml-3"><input type="text" class="form-control" name="mail" id="mail" readonly <?php if(!empty($row->mail)){ echo "value='".$row->mail."'"; } ?> ></div>
-            <div class="col-md-5"><input type="text" class="form-control" name="phone" id="phone" readonly <?php if(!empty($row->phone)){ echo "value='".$row->phone."'"; } ?> ></div>
+            <div class="col-md-6 ml-3"><input type="text" class="form-control" name="mail" id="mail" readonly <?php if(!empty($row->id_user)){ echo "value='".$users[$row->id_user]->mail."'"; } ?> ></div>
+            <div class="col-md-5"><input type="text" class="form-control" name="phone" id="phone" readonly <?php if(!empty($row->id_user)){ echo "value='".$users[$row->id_user]->phone."'"; } ?> ></div>
             </div>
             <div class="row">
             <div class="col-md-12 p-3"><h4>Peças</h4><hr></div>
@@ -71,6 +71,63 @@
                 </tr>
               </thead>
               <tbody>
+                <?php
+                if(!empty($parts)):
+                  $old_value_total_pieces = 0;
+                  foreach($parts as $part):
+                    $old_value_total_pieces += $part->value_total_pieces;
+                ?>
+                <tr id="tr_part_<?php echo $part->id; ?>">
+                <input type="hidden" id="part_<?php echo $part->id; ?>" value="<?php echo $part->id; ?>">
+                <td class="w-50"><input type="text" id="name_part_<?php echo $part->id; ?>" placeholder="nome" value="<?php echo $part->parts; ?>" class="form-control"></td>
+                  <td><input type="text" placeholder="quantidade" id="qtd_part_<?php echo $part->id; ?>" value="<?php echo $part->amount; ?>" class="form-control" ></td>
+                  <td><input type="text" placeholder="vlr. unitário" id="value_unitary_<?php echo $part->id; ?>" value="<?php echo $part->value_unitary; ?>" class="form-control"></td>
+                  <td><input type="text" placeholder="vlr. total" readonly id="value_tot_part_<?php echo $part->id; ?>" value="<?php echo $part->value_total_pieces; ?>" class="form-control"></td>
+                  <td><a href="#" id="button_delete_part_<?php echo $part->id; ?>"  class="btn btn-warning"><i class="fas fa-trash-alt"></i></a></td>
+                </tr>
+                <script>
+                
+                $(document).ready(function(){   
+                  part_id = <?php echo $part->id; ?>;
+                $("#button_delete_part_"+part_id).click(function(){
+                  value_tot_decre = $("#value_tot_part_"+part_id).val();
+                         
+                         $.confirm({
+                             title: 'Excluir a peça do orçamento?',
+                             content: 'Deseja excluir o orçamento '+$("#name_part_"+part_id).val()+'!',
+                             buttons: {
+                                 confirm: function () {
+                                     $.post("<?php echo getenv('APP_HOST'); ?>/orcamento/deletar-pecas",
+                                     {
+                                         status: 0 ,
+                                         id: $("#part_"+part_id).val() 
+                                     },
+                                     function(data, status){ 
+                                     if(data == 1 && status == "success"){ 
+                                          console.log( $("#value_total_service").val() +"-"+ value_tot_decre);
+                                          val_tot = $("#value_total_service").val() - value_tot_decre;
+                                          console.log(val_tot);
+                                          $('#value_total_service').val(val_tot) ;
+                                          toastr.success("Excluído com sucesso.","Sucesso");
+                                          $("#tr_part_"+part_id).remove();
+                                         }else{
+                                             toastr.error("Erro ao excluir o status.","Erro");
+                                         }
+                                 });
+                                 },
+                                 cancel: function () {
+                                     toastr.error("Ação cancelada pelo usuário.","Erro");
+                                 } 
+                             }
+                         }); 
+                    
+                         });
+                         });
+                </script>
+                <?php
+                  endforeach;
+                endif;
+                ?>
              </tbody>
             </table>
             <div class="col-md-12">

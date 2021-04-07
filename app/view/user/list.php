@@ -18,8 +18,7 @@
                     <td><b>#</b></td>
                     <td><b>Nome</b></td>
                     <td><b>E-mail</b></td>
-                    <td><b>Telefone</b></td>
-                    <td><b>CPF/CNPJ</b></td>
+                    <td><b>Telefone</b></td> 
                     <td><b>Perfil</b></td>
                     <td><b>Status</b></td>
                     <td colspan="2" class="text-center"><b>Ações</b></td>
@@ -30,8 +29,7 @@
                     <td><?php echo $data->id; ?></td>
                     <td><?php echo $data->name; ?></td>
                     <td><?php echo $data->mail; ?></td>
-                    <td><?php echo $data->phone; ?></td>
-                    <td><?php echo $data->cpfcnpj; ?></td>
+                    <td><?php echo $data->phone; ?></td> 
                     <td class="text-center">
                         <?php echo $levels[$data->level]; ?>
                     </td>
@@ -41,7 +39,7 @@
                     
                     <input type="hidden" id="status_<?php echo $data->id; ?>" value="<?php echo $data->status; ?>"/>
                     <i class="fas fa-circle" id="button_status_<?php echo $data->id; ?>"></i></td>
-                    <td class="text-center" colspan="2"><a href="usuario/editar/<?php echo $data->id; ?>"><i class="fas fa-edit"></i></a>&nbsp; <i class="far fa-trash-alt" id="button_deletar_user_<?php echo $data->id; ?>"></i></td>
+                    <td class="text-center" colspan="2"><a href="usuario/editar/<?php echo $data->id; ?>" class="btn btn-info" ><i class="fas fa-edit"></i></a>&nbsp; <a href="#" id="button_deletar_user_<?php echo $data->id; ?>" class="btn btn-danger" ><i class="far fa-trash-alt" ></i></a></td>
                 </tr>
                 </tbody>
                 <script>
