@@ -39,21 +39,23 @@ $router->get("/usuario/deletar/{id}","UserController:userDelete");
 $router->post("/usuario/alterar-status","UserController:userEditStatus");
 //Orçamento 
 $router->get("/orcamento","IndexController:budgetListPage"); 
-$router->post("/orcamento/alterar-status","BudgetController:budgetEditStatus");
 $router->get("/orcamento/adicionar","IndexController:budgetAddPage"); 
 $router->get("/orcamento/adicionar/{message}","IndexController:budgetAddPage"); 
 $router->post("/orcamento/adicionar","BudgetController:budgetRegister"); 
 $router->get("/orcamento/editar/{id}","IndexController:budgetEditPage"); 
 $router->get("/orcamento/editar/{id}/{message}","IndexController:budgetEditPage"); 
+$router->post("/orcamento/editar","UserController:budgetUpdate"); 
+$router->post("/orcamento/alterar-status","BudgetController:budgetEditStatus");
 //Veiculo
 $router->get("/veiculo","IndexController:vehicleListPage"); 
-$router->post("/veiculo/alterar-status","VehicleController:vehicleEditStatus");
 $router->get("/veiculo/adicionar","IndexController:vehicleAddPage"); 
 $router->get("/veiculo/adicionar/{message}","IndexController:vehicleAddPage");
 $router->post("/veiculo/adicionar","VehicleController:vehicleRegister");  
 $router->get("/veiculo/editar/{id}","IndexController:vehicleEditPage"); 
 $router->get("/veiculo/editar/{id}/{message}","IndexController:vehicleEditPage"); 
 $router->get("/veiculo/buscar-placa/{board}","VehicleController:listVehicleUser"); 
+$router->post("/veiculo/editar","VehicleController:vehicleUpdate"); 
+$router->post("/veiculo/alterar-status","VehicleController:vehicleEditStatus");
 
 
 //Exception erro

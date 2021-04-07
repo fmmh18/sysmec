@@ -19,18 +19,36 @@ class vehicleController
     public function vehicleRegister($request)
     {
         $vehicles = new vehicleModel;
+        $vehicleusers = new vehicleuserModel;
+
+        if(empty($request) && !($request['hidden_action'])){
+            header("location: ".getenv('APP_HOST').$request['hidden_action']."/campo-vazio");
+            return false;
+     
+        }
+        
         $result = $vehicles->vehicleDuplicate($request['board']);
 
         if($result > 0){
             header("location: ".getenv('APP_HOST').$request['hidden_action']."/veiculo-cadastrado");
             return false;
         }
-        if(!empty($vehicles->vehicleInsert($request)))
+         
+        if(!empty($vehicle_id = $vehicles->vehicleInsert($request)))
         {
-            if(!empty($request['hidden_action']))
-            header("location: ".getenv('APP_HOST').$request['hidden_action']."/sucesso");
-            else
-            header("location: ".getenv('APP_HOST')."/sucesso");
+            $data = array();
+            $data = ["user_id"=>$request["user_id"],"id_vehicle"=>$vehicle_id];
+             if(!empty($vehicleusers->createVehicleUser($data))){
+                if(!empty($request['hidden_action']))
+                header("location: ".getenv('APP_HOST').$request['hidden_action']."/sucesso");
+                else
+                header("location: ".getenv('APP_HOST')."/sucesso");
+            }else{
+                if(!empty($request['hidden_action']))
+                header("location: ".getenv('APP_HOST').$request['hidden_action']."/".$request['id']."/erro");
+                else 
+                header("location: ".getenv('APP_HOST').$request['hidden_action']."/".$request['id']."/erro");                
+            }
         }else{
             if(!empty($request['hidden_action']))
             header("location: ".getenv('APP_HOST').$request['hidden_action']."/erro");
@@ -42,15 +60,22 @@ class vehicleController
 
     public function vehicleUpdate($request)
     {
-        $vehicles   = new vehicleModel;
- 
-       
+        $vehicles       = new vehicleModel;
+        $vehiclesusers   = new vehicleuserModel;
+
         if(!empty($vehicles->vehicleUpdate($request)))
         {
-            if(!empty($request['hidden_action']))
-            header("location: ".getenv('APP_HOST').$request['hidden_action']."/".$request['id']."/sucesso");
-            else
-            header("location: ".getenv('APP_HOST')."/".$request['id']."/sucesso");
+            if(!empty($vehiclesusers->updateVehicleUser($request))){
+                if(!empty($request['hidden_action']))
+                header("location: ".getenv('APP_HOST').$request['hidden_action']."/".$request['id']."/sucesso");
+                else
+                header("location: ".getenv('APP_HOST')."/".$request['id']."/sucesso");
+            }else{
+                if(!empty($request['hidden_action']))
+                header("location: ".getenv('APP_HOST').$request['hidden_action']."/".$request['id']."/erro");
+                else
+                header("location: ".getenv('APP_HOST').$request['hidden_action']."/".$request['id']."/erro");                
+            }
         }else{
             if(!empty($request['hidden_action']))
             header("location: ".getenv('APP_HOST').$request['hidden_action']."/".$request['id']."/erro");

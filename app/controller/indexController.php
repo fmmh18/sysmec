@@ -27,6 +27,9 @@ class indexController
             }else if($data['message'] == 'erro-login'){
                 $message_title = "Erro";
                 $message = "Usuário não logado."; 
+            }else if($data['message'] == 'campo-vazio'){
+                $message_title = "Erro";
+                $message = "Formulário não preenchido."; 
             }
         }   
         $title = "SysMec - Seu gerenciador de oficina";
@@ -73,6 +76,9 @@ class indexController
             }else if($data['message'] == 'erro'){
                 $message_title = "Erro";
                 $message = "Cadastro não efetuado."; 
+            }else if($data['message'] == 'campo-vazio'){
+                $message_title = "Erro";
+                $message = "Formulário não preenchido."; 
             } 
         }   
 
@@ -159,12 +165,16 @@ class indexController
             }else if($data['message'] == 'erro'){
                 $message_title = "Erro";
                 $message = "Cadastro não efetuado."; 
-            } 
+            }else if($data['message'] == 'campo-vazio'){
+                $message_title = "Erro";
+                $message = "Formulário não preenchido."; 
+            }
         }   
 
         if(empty($_SESSION)){ 
             header("location: ".getenv('APP_HOST')."/sair/usuario-nao-logado");
         }
+
          
         
         $hidden_action = $_GET['route'];
@@ -223,7 +233,7 @@ class indexController
         {
             $datas = vehicleuserModel::join('vehicles','vehicles_users.id_vehicle','=','vehicles.id')
             ->join('users','vehicles_users.id_user','=','users.id')
-            ->select('users.id as id_user','users.name as name', 'users.mail as mail','users.phone as phone','users.cpfcnpj as cpfcnpj','vehicles.id as id_vehicle','vehicles.board as board','vehicles.brand as brand', 'vehicles.model as model','vehicles.year as year')
+            ->select('users.id as id_user','vehicles.id as id','vehicles.board as board','vehicles.brand as brand', 'vehicles.model as model','vehicles.year as year','vehicles.status as status')
             ->where('users.id',$_SESSION['uID'])
             ->get();
         }
@@ -248,6 +258,9 @@ class indexController
             }else if($data['message'] == 'veiculo-cadastrado'){
                 $message_title = "Erro";
                 $message = "Veículo já cadastrado."; 
+            }else if($data['message'] == 'campo-vazio'){
+                $message_title = "Erro";
+                $message = "Formulário não preenchido."; 
             }  
         }   
 
@@ -255,6 +268,9 @@ class indexController
             header("location: ".getenv('APP_HOST')."/sair/usuario-nao-logado");
         }
          
+        $users = new userModel;
+
+        $user = $users::all(); 
         
         $hidden_action = $_GET['route'];
         $subtitle = "Cadastrar";
@@ -284,8 +300,16 @@ class indexController
         }
               
         $vehicles = new vehicleModel;
+        $users = new userModel;
 
-        $row = $vehicles->vehicleDetail($data['id']);
+        $row = vehicleuserModel::join('vehicles','vehicles_users.id_vehicle','=','vehicles.id')
+        ->join('users','vehicles_users.id_user','=','users.id')
+        ->select('vehicles_users.id AS id_relationship','users.id as user_id','vehicles.id as id','vehicles.board as board','vehicles.brand as brand', 'vehicles.model as model','vehicles.year as year')
+        ->where('vehicles.id',$data['id'])
+        ->get();
+ 
+
+        $user = $users::all(); 
          
         $hidden_action = substr($_GET['route'],0,15);
         $subtitle = "Editar";
@@ -293,5 +317,4 @@ class indexController
         $title = "SysMec - Seu gerenciador de oficina - Editar Veículo";
         require __DIR__."/../view/vehicle/form.php";
     }
-
 }

@@ -20,9 +20,9 @@ class vehicleModel extends Model
     }
 
     public function vehicleInsert($data)
-    {
+    { 
         $vehicle = new vehicleModel;
-        $vehicle->board       = $data['board'];
+        $vehicle->board       = str_replace('-','',strtoupper($data['board']));
         $vehicle->model       = $data['model'];
         $vehicle->brand       = $data['brand'];
         $vehicle->year        = $data['year'];
@@ -40,7 +40,7 @@ class vehicleModel extends Model
     public function vehicleUpdate($data)
     {
         $vehicle = vehicleModel::where('id',$data['id'])->update([
-            'board'          => $data['board'],
+            'board'          => str_replace('-','',strtoupper($data['board'])),
             'brand'          => $data['brand'],
             'model'          => $data['model'], 
             'year'           => $data['year'], 

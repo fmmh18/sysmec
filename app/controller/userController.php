@@ -52,6 +52,16 @@ class userController
 
         //verificar se ja possui cadastro
         $result = $users->userValidateCPFCNPJ($request['cpfcnpj']);
+        if(empty($request) && !($request['hidden_action'])){
+            if(!empty($request['hidden_action'])):
+            header("location: ".getenv('APP_HOST').$request['hidden_action']."/campo-vazio");
+            return false;
+            else:
+            header("location: ".getenv('APP_HOST')."/campo-vazio");
+            return false;
+            endif;
+     
+        }
 
         if($result > 0){
             if(!empty($request['hidden_action']))

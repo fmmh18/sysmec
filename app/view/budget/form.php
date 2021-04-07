@@ -11,9 +11,10 @@
         <hr>
         <form action="<?php echo getenv('APP_HOST').$hidden_action; ?>" method="post">
         <input type="hidden" name="hidden_action" value="<?php echo $hidden_action; ?>">
-        <input type="hidden" name="id" value="<?php echo $row->id; ?>">
+        <input type="hidden" name="id" <?php if(!empty($row->id)){ echo "value='".$row->id."'"; } ?>>
         <input type="hidden" name="id_vehicle" id="id_vehicle">
         <input type="hidden" name="id_user" id="id_user">
+        <input type="hidden" name="id_workshop" id="<?php echo $_SESSION['uID']; ?>">
         
             <div class="row">
             <div class="col-md-2 ml-3"><b>Placa</b></div>
@@ -72,6 +73,16 @@
               <tbody>
              </tbody>
             </table>
+            <div class="col-md-12">
+            <table class="table"> 
+              <tbody>
+                <tr>
+                  <td class="border-0 w-75 text-right" style="background-color:#ccc"><b>Total</b></td>
+                  <td class="border-0" style="background-color:#ccc"><input type="text" name="value_total_services" class="form-control" readonly id="value_total_service"></td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
             </div>
              </div>
             <div class="col-md-12 p-3"><button type="submit" class="btn btn-lg btn-block btn-danger"><b><?php echo $button_action; ?></b></button></div>

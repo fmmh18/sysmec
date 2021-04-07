@@ -21,21 +21,13 @@ class budgetModel extends Model
     public function budgetInsert($data)
     {
         $budget = new budgetModel;
-        $budget->name            = $data['name'];
-        $budget->mail            = $data['mail'];
-        $budget->cpfcnpj         = $data['cpfcnpj'];
-        $budget->password        = $data['password'];
-        $budget->address         = $data['address'];
-        $budget->neighborhood    = $data['neighborhood'];
-        $budget->complement      = $data['complement'];
-        $budget->zipcode         = $data['zipcode'];
-        $budget->number          = $data['number'];
-        $budget->state           = $data['state'];
-        $budget->city            = $data['city'];
-        $budget->phone           = $data['phone'];
-        $budget->image           = $data['image'];
-        $budget->level           = $data['level'];
-        $budget->created_at      = date('Y-m-d H:i:s');
+        $budget->id_vehicle    = $data['id_vehicle'];
+        //$budget->id_workshop   = $data['id_workshop'];
+        $budget->id_workshop   = 1;
+        $budget->id_user       = $data['id_user'];
+        $budget->date_entry    = date('Y-m-d H:i:s');
+        $budget->total         = $data['value_total_services']; 
+        $budget->created_at    = date('Y-m-d H:i:s');
         $budget->save();
         
         return $budget->id;
