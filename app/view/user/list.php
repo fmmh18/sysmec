@@ -23,7 +23,9 @@
                     <td><b>Status</b></td>
                     <td colspan="2" class="text-center"><b>Ações</b></td>
                 </tr>
-                <?php foreach($datas as $data): ?>
+                <?php 
+                if (count($datas) > 0) {
+                    foreach ($datas as $data): ?>
                 <tbody>
                 <tr>
                     <td><?php echo $data->id; ?></td>
@@ -111,7 +113,15 @@
                         });
                     }); 
                     </script>
-                <?php endforeach; ?>
+                <?php endforeach;
+                }else{
+                ?>
+                <tbody>
+                    <tr>
+                        <td colspan="8" class="text-center"><h4>Não possui registro.</h4></td>
+                    </tr>
+                </tbody>
+                <?php } ?>
             </thead>
         </table>
     </div> 

@@ -24,3 +24,8 @@
     }
 
 }
+#classModal {}
+
+.modal-body {
+  overflow-x: auto;
+}

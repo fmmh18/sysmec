@@ -15,8 +15,8 @@
       </div>
       <div class="row ml-3">
         <div class="col-md-2 href mr-3 p-4 <?php if($_SESSION["uLevel"] == 3){ echo "d-none"; }?> btn btn-info" id="usuario" style="height:140px" ><i class="fas fa-users fa-4x"></i><h4>Usuários</h4></div>
-        <div class="col-md-2 href mr-3 p-4 <?php if($_SESSION["uLevel"] == 3){ echo "d-none"; }?> btn btn-info" id="orcamento" style="height:140px" ><i class="fas fa-file-alt fa-4x"></i><h4>Orçamentos</h4></div>
-        <div class="col-md-2 href p-4 <?php if($_SESSION["uLevel"] == 3){ echo "d-none"; }?> btn btn-info" id="veiculo" style="height:140px" ><i class="fas fa-car fa-4x"></i><h4>Veículos</h4></div>
+        <div class="col-md-2 href mr-3 p-4 btn btn-info" id="orcamento" style="height:140px" ><i class="fas fa-file-alt fa-4x"></i><h4>Orçamentos</h4></div>
+        <div class="col-md-2 href p-4 btn btn-info" id="veiculo" style="height:140px" ><i class="fas fa-car fa-4x"></i><h4>Veículos</h4></div>
       </div>
     </div>
   </div>

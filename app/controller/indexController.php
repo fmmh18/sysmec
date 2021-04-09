@@ -137,6 +137,7 @@ class indexController
         
         $budgets = new budgetModel;
         $vehicles = vehicleModel::all();
+        $users      = userModel::all();
 
         if($_SESSION['uLevel'] == 2)
         {
@@ -150,7 +151,6 @@ class indexController
         {
             $datas = $budgets::all();
         }
- 
         
         $title = "SysMec - Seu gerenciador de oficina - Lista de Orçamentos";
         require __DIR__."/../view/budget/list.php";
