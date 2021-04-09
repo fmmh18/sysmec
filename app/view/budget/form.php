@@ -7,7 +7,7 @@
         <div class="col-md-10 text-center"><img src="<?php echo getenv('APP_HOST'); ?>/assets/media/logo/sysmec-56.png" class="mx-auto img-fluid"></div>
     </nav> 
     <div class="col-md-12">
-    <h2><?php echo $subtitle; ?> Orçamento</h2>
+    <h2><i class="fas fa-file-alt"></i> <?php echo $subtitle; ?> Orçamento</h2>
         <hr>
         <form action="<?php echo getenv('APP_HOST').$hidden_action; ?>" method="post">
         <input type="hidden" name="hidden_action" value="<?php echo $hidden_action; ?>">

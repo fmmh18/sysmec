@@ -7,7 +7,7 @@
         <div class="col-md-10 text-center"><img src="<?php echo getenv('APP_HOST'); ?>/assets/media/logo/sysmec-56.png" class="mx-auto img-fluid"></div>
     </nav>
     <div class="col-md-12">
-        <h2>Lista de Usuários</h2>
+        <h2><i class="fas fa-users"></i> Lista de Usuários</h2>
         <hr>
         <div class="col-md-12 text-right">
         <a href="usuario/adicionar" class="btn btn-primary" style="margin-bottom:8px"><i class="fas fa-plus-circle"></i> Cadastrar</a>
