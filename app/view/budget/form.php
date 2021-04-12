@@ -23,22 +23,22 @@
             <div class="col-md-1"><b>Ano</b></div>
             </div>
             <div class="row">
-            <div class="col-md-2 ml-3"><input type="text" class="form-control" name="board" id="board" style="text-transform: uppercase;" <?php if(!empty($row->id_vehicle)){ echo "value='".$vehicles[$row->id_vehicle]->board."'"; } ?> ></div>
-            <div class="col-md-4"><input type="text" class="form-control" name="model" id="model" readonly <?php if(!empty($row->id_vehicle)){ echo "value='".$vehicles[$row->id_vehicle]->model."'"; } ?> ></div>
-            <div class="col-md-4"><input type="text" class="form-control" name="brand" id="brand" readonly <?php if(!empty($row->id_vehicle)){ echo "value='".$vehicles[$row->id_vehicle]->brand."'"; } ?> ></div>
-            <div class="col-md-1"><input type="text" class="form-control" name="year" id="year"  readonly <?php if(!empty($row->id_vehicle)){ echo "value='".$vehicles[$row->id_vehicle]->year."'"; } ?> ></div>
+            <div class="col-md-2 ml-3"><input type="text" class="form-control" name="board" id="board" style="text-transform: uppercase;" <?php if(!empty($row->id_vehicle)){ echo "value='".$vehicle[0]->board."'"; } ?> ></div>
+            <div class="col-md-4"><input type="text" class="form-control" name="model" id="model" readonly <?php if(!empty($row->id_vehicle)){ echo "value='".$vehicle[0]->model."'"; } ?> ></div>
+            <div class="col-md-4"><input type="text" class="form-control" name="brand" id="brand" readonly <?php if(!empty($row->id_vehicle)){ echo "value='".$vehicle[0]->brand."'"; } ?> ></div>
+            <div class="col-md-1"><input type="text" class="form-control" name="year" id="year"  readonly <?php if(!empty($row->id_vehicle)){ echo "value='".$vehicle[0]->year."'"; } ?> ></div>
             </div>
             <div class="row">
             <div class="col-md-11 ml-3"><b>Proprietario</b></div>
-            <div class="col-md-11 ml-3"><input type="text" class="form-control" name="name" id="name" readonly <?php if(!empty($row->id_user)){ echo "value='".$users[$row->id_user]->name."'"; } ?> ></div>
+            <div class="col-md-11 ml-3"><input type="text" class="form-control" name="name" id="name" readonly <?php if(!empty($row->id_user)){ echo "value='".$user[0]->name."'"; } ?> ></div>
             </div>
             <div class="row">
             <div class="col-md-6 ml-3"><b>E-mail</b></div>
             <div class="col-md-5"><b>Telefone</b></div>
             </div> 
             <div class="row">
-            <div class="col-md-6 ml-3"><input type="text" class="form-control" name="mail" id="mail" readonly <?php if(!empty($row->id_user)){ echo "value='".$users[$row->id_user]->mail."'"; } ?> ></div>
-            <div class="col-md-5"><input type="text" class="form-control" name="phone" id="phone" readonly <?php if(!empty($row->id_user)){ echo "value='".$users[$row->id_user]->phone."'"; } ?> ></div>
+            <div class="col-md-6 ml-3"><input type="text" class="form-control" name="mail" id="mail" readonly <?php if(!empty($row->id_user)){ echo "value='".$user[0]->mail."'"; } ?> ></div>
+            <div class="col-md-5"><input type="text" class="form-control" name="phone" id="phone" readonly <?php if(!empty($row->id_user)){ echo "value='".$user[0]->phone."'"; } ?> ></div>
             </div>
             <div class="row">
             <div class="col-md-12 p-3"><h4>Peças</h4><hr></div>
@@ -135,7 +135,7 @@
               <tbody>
                 <tr>
                   <td class="border-0 w-75 text-right" style="background-color:#ccc"><b>Total</b></td>
-                  <td class="border-0" style="background-color:#ccc"><input type="text" name="value_total_services" class="form-control" readonly id="value_total_service"></td>
+                  <td class="border-0" style="background-color:#ccc"><input type="text" name="value_total_services" class="form-control" readonly id="value_total_services" <?php if(!empty($old_value_total_pieces)){?>value="<?php echo $old_value_total_pieces; ?>"<?php }?> ></td>
                 </tr>
               </tbody>
             </table>

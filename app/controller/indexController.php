@@ -87,12 +87,12 @@ class indexController
             header("location: ".getenv('APP_HOST')."/sair/usuario-nao-logado");
         }
         
-        $levels = ["Sem Perfil","Administrador","Mecanico","Usuário Comum"];
+        $levels         = ["Sem Perfil","Administrador","Mecanico","Usuário Comum"];
         
-        $hidden_action = $_GET['route'];
-        $subtitle = "Cadastrar";
-        $button_action = "Adicionar";
-        $title = "SysMec - Seu gerenciador de oficina - Cadastrar Usuário";
+        $hidden_action  = $_GET['route'];
+        $subtitle       = "Cadastrar";
+        $button_action  = "Adicionar";
+        $title          = "SysMec - Seu gerenciador de oficina - Cadastrar Usuário";
         require __DIR__."/../view/user/form.php";
     }
 
@@ -117,14 +117,14 @@ class indexController
         
         $levels = ["Sem Perfil","Administrador","Mecanico","Usuário Comum"];
             
-        $users = new userModel;
+        $users  = new userModel;
 
-        $row = $users->userDetail($data['id']);
+        $row    = $users->userDetail($data['id']);
          
-        $hidden_action = substr($_GET['route'],0,15);
-        $subtitle = "Editar";
-        $button_action = "Editar";
-        $title = "SysMec - Seu gerenciador de oficina - Editar Usuário";
+        $hidden_action  = substr($_GET['route'],0,15);
+        $subtitle       = "Editar";
+        $button_action  = "Editar";
+        $title          = "SysMec - Seu gerenciador de oficina - Editar Usuário";
         require __DIR__."/../view/user/form.php";
     }
 
@@ -135,9 +135,10 @@ class indexController
             header("location: ".getenv('APP_HOST')."/sair/usuario-nao-logado");
         }
         
-        $budgets = new budgetModel;
-        $vehicles = vehicleModel::all();
+        $budgets    = new budgetModel;
+        $vehicles   = vehicleModel::all();
         $users      = userModel::all();
+        $parts      = budgetPartModel::where('status',1)->get();
 
         if($_SESSION['uLevel'] == 2)
         {
@@ -151,6 +152,7 @@ class indexController
         {
             $datas = $budgets::all();
         }
+
         
         $title = "SysMec - Seu gerenciador de oficina - Lista de Orçamentos";
         require __DIR__."/../view/budget/list.php";
@@ -177,12 +179,10 @@ class indexController
             header("location: ".getenv('APP_HOST')."/sair/usuario-nao-logado");
         }
 
-         
-        
-        $hidden_action = $_GET['route'];
-        $subtitle = "Cadastrar";
-        $button_action = "Adicionar";
-        $title = "SysMec - Seu gerenciador de oficina - Cadastrar Orçamento";
+        $hidden_action  = $_GET['route'];
+        $subtitle       = "Cadastrar";
+        $button_action  = "Adicionar";
+        $title          = "SysMec - Seu gerenciador de oficina - Cadastrar Orçamento";
         require __DIR__."/../view/budget/form.php";
     }
     
@@ -204,12 +204,11 @@ class indexController
          
             
         $budgets    = new budgetModel;
-        $vehicles   = vehicleModel::all();
-        $users      = userModel::all();
-        $parts      = budgetPartModel::where('id_budget',$data['id'])->where('status',1)->get();
-
-      //  print_r($parts);exit;
-        $row = $budgets->budgetDetail($data['id']);
+        $row        = $budgets->budgetDetail($data['id']);
+        $vehicle    = vehicleModel::where('id',$row->id_vehicle)->get();
+        $user       = userModel::where('id',$row->id_user)->get();
+        $parts      = budgetPartModel::where('id_budget',$row->id)->where('status',1)->get();
+ 
 
          
          

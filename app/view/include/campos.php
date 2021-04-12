@@ -7,8 +7,14 @@ $(document).ready(function() {
   });
   var max_fields = 100; //maximum input boxes allowed 
   var x = 0; //initlal text box count
-  var value_total_service = 0;
-  $('#value_total_service').val(<?php echo $old_value_total_pieces; ?>);
+  var value_total_service = <?php echo $old_value_total_pieces ; ?>; 
+  console.log($('#value_total_services').val());
+  if(value_total_service != ''){
+    value_total_service = value_total_service
+  }else{
+    value_total_service = 0;
+  }
+  console.log(value_total_service);
     
 
   $("#add_part").click(function(e) { //on add input button click
@@ -39,7 +45,7 @@ $(document).ready(function() {
       x++; //text box increment
 
       value_total_service += Number(value_tot); 
-    $('#value_total_service').val(value_total_service.toLocaleString('pt-br', {minimumFractionDigits: 2}).replace(',','.'));
+    $('#value_total_services').val(value_total_service.toLocaleString('pt-br', {minimumFractionDigits: 2}).replace(',','.'));
     $('#value_tot_part0').val('');
     $('#value_unitary0').val('');
     $('#qtd_part0').val('');

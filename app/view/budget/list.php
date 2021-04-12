@@ -31,8 +31,18 @@
                 <tr>
                     <td><?php echo $data->id; ?></td>
                     <td><?php echo date('d/m/Y H:i:s',strtotime($data->date_entry)); ?></td>
-                    <td><?php echo $vehicles[$data->id_vehicle]->brand.' - '.$vehicles[$data->id_vehicle]->model; ?></td>
-                    <td><?php echo $data->total; ?></td> 
+                    <td>
+                    <?php 
+                        foreach($vehicles as $vehicle): 
+                            if($vehicle->id == $data->id_vehicle):
+                    ?>
+                    <?php echo $vehicle->brand.' - '.$vehicle->model; ?>
+                    <?php
+                        endif;
+                    endforeach;
+                    ?>
+                    </td>
+                    <td>R$ <?php echo $data->total; ?></td> 
                     <input type="hidden" id="budget_id_<?php echo $data->id; ?>" value="<?php echo $data->id; ?>"/>
                     <td class="text-center"> 
                     <input type="hidden" id="status_<?php echo $data->id; ?>" value="<?php echo $data->status; ?>"/>
@@ -112,7 +122,8 @@
                 </script>   
                 <?php include __DIR__."/../include/modal.php"; ?> 
                 <?php endforeach; 
-                    }else{  ?>
+                    }else{  
+                ?>
                 <tbody>
                     <tr>
                         <td colspan="8" class="text-center"><h4>Não possui registro.</h4></td>
