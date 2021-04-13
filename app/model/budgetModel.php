@@ -33,13 +33,10 @@ class budgetModel extends Model
         return $budget->id;
     }
 
-    public function budgetUpdate($data)
+    public function budgetEdit($data)
     {
         $budget = budgetModel::where('id',$data['id'])->update([
-            'board'          => $data['board'],
-            'brand'          => $data['brand'],
-            'model'          => $data['model'], 
-            'year'           => $data['year'], 
+            'total'          => $data['value_total_services'],
             'updated_at'     => date('Y-m-d H:i:s')
             ]);
             return $budget;

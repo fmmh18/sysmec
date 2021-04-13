@@ -12,9 +12,9 @@
         <form action="<?php echo getenv('APP_HOST').$hidden_action; ?>" method="post">
         <input type="hidden" name="hidden_action" value="<?php echo $hidden_action; ?>">
         <input type="hidden" name="id" <?php if(!empty($row->id)){ echo "value='".$row->id."'"; } ?>>
-        <input type="hidden" name="id_vehicle" id="id_vehicle">
-        <input type="hidden" name="id_user" id="id_user">
-        <input type="hidden" name="id_workshop" id="<?php echo $_SESSION['uID']; ?>">
+        <input type="hidden" name="id_vehicle" id="id_vehicle" <?php if(!empty($row->id_vehicle)){ echo "value='".$vehicle[0]->id."'"; } ?>>
+        <input type="hidden" name="id_user" id="id_user" <?php if(!empty($row->id_user)){ echo "value='".$user[0]->id."'"; } ?>>
+        <input type="hidden" name="id_workshop" <?php if(!empty($row->id_user)){ echo "value='".$user[0]->id."'"; }else{ echo "value='".$_SESSION['uID']."'"; } ?> >
         
             <div class="row">
             <div class="col-md-2 ml-3"><b>Placa</b></div>

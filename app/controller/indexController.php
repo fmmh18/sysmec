@@ -212,7 +212,7 @@ class indexController
 
          
          
-        $hidden_action = substr($_GET['route'],0,15);
+        $hidden_action = substr($_GET['route'],0,17);
         $subtitle = "Editar";
         $button_action = "Editar";
         $title = "SysMec - Seu gerenciador de oficina - Editar Orçamento";
