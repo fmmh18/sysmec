@@ -192,10 +192,10 @@ class indexController
         if(!empty($data['message'])){
             if($data['message'] == 'sucesso'){
                 $message_title = "Sucesso";
-                $message = "Cadastro efetuado."; 
+                $message = "Alterado efetuado."; 
             }else if($data['message'] == 'erro'){
                 $message_title = "Erro";
-                $message = "Cadastro não efetuado."; 
+                $message = "Alteração não efetuada."; 
             } 
         }   
         if(empty($_SESSION)){ 

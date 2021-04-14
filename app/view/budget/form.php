@@ -104,10 +104,10 @@
                                      },
                                      function(data, status){ 
                                      if(data == 1 && status == "success"){ 
-                                          console.log( $("#value_total_service").val() +"-"+ value_tot_decre);
-                                          val_tot = $("#value_total_service").val() - value_tot_decre;
-                                          console.log(val_tot);
-                                          $('#value_total_service').val(val_tot) ;
+                                       //   console.log( $("#value_total_services").val() +"-"+ value_tot_decre);
+                                          val_tot = $("#value_total_services").val() - value_tot_decre;
+                                          //console.log(val_tot);
+                                          $('#value_total_services').val(val_tot) ;
                                           toastr.success("Excluído com sucesso.","Sucesso");
                                           $("#tr_part_"+part_id).remove();
                                          }else{

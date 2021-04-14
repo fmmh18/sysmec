@@ -8,7 +8,6 @@ $(document).ready(function() {
   var max_fields = 100; //maximum input boxes allowed 
   var x = 0; //initlal text box count
   var value_total_service = <?php echo $old_value_total_pieces ; ?>; 
-  console.log($('#value_total_services').val());
   if(value_total_service != ''){
     value_total_service = value_total_service
   }else{
